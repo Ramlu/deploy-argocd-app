@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: springboot-multisource
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  sources:
+    # Source 1: values repo
+    - repoURL: https://github.com/devops4solutions/eks-hello-svc.git
+      targetRevision: argocd
+      ref: values
+    # Source 2: Helm chart in Git repo
+    - repoURL: https://github.com/devops4solutions/springboot-helm-chart.git
+      targetRevision: main
+      path: helm-charts/springboot
+      helm:
+        valueFiles:
+          - $values/terraform/dev/values_argocd.yaml

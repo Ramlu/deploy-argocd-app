@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: springboot-app
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  source:
+    repoURL: https://github.com/devops4solutions/kubernetes-code.git
+    targetRevision: argocd
+    path: helm-chart/springboot
+    helm:
+      valueFiles:
+        - eks_nodegroup/values_hello.yaml
