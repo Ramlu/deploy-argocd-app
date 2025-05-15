@@ -14,6 +14,10 @@ spec:
       selfHeal: true
   sources:
     # Source 1: values repo
+   # PreSync Hook
+  - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
+    targetRevision: main
+    path: deploy/dev/pre-sync/presync.yaml
   - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
     targetRevision: main
     ref: values
