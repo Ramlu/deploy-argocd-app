@@ -15,7 +15,7 @@ spec:
   sources:
     # Source 1: values repo
   - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
-    targetRevision: main
+    targetRevision: test
     ref: values
     # Source 2: Helm chart in Git repo
   - repoURL: https://devops4solutions.github.io/springboot-helm-chart/

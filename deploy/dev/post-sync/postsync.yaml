@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: trigger-test-sync
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+spec:
+  template:
+    spec:
+      containers:
+        - name: trigger-test
+          image: argoproj/argocd:v2.8.3 # Use the appropriate Argo CD version
+          command:
+            - sh
+            - -c
+            - |
+              echo "Authenticating with Argo CD"
+              argocd login localhost:8080 --insecure --username admin --password "7XdJgf-7vM2JeJzJ"
+              echo "Syncing test application..."
+              argocd app sync springboot-multisource-test
+      restartPolicy: Never
