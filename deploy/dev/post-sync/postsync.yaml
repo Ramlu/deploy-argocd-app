@@ -15,7 +15,7 @@ spec:
             - -c
             - |
               echo "Authenticating with Argo CD"
-              argocd login localhost:8080 --insecure --username admin --password "7XdJgf-7vM2JeJzJ"
+              argocd login argocd-server.argocd.svc.cluster.local --insecure --username admin --password "7XdJgf-7vM2JeJzJ"
               echo "Syncing test application..."
               argocd app sync springboot-multisource-test
       restartPolicy: Never
