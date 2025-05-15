@@ -8,10 +8,8 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: default
-  syncPolicy:
-    automated:
-      prune: false
-      selfHeal: false
+  syncPolicy: {} # To disable autosync
+
   sources:
     # Source 1: values repo
     - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git

@@ -6,7 +6,7 @@ image:
 service:
   type: ClusterIP
   port: 80
-  name: hello
+  name: hello-test
 podAnnotations:
   prometheus.io/scrape: "true"
   prometheus.io/path: "/actuator/prometheus"
