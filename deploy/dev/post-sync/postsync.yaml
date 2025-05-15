@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: trigger-test
-          image: argoproj/argocd:v2.8.3 # Use the appropriate Argo CD version
+          image: quay.io/argoproj/argocd # Use the appropriate Argo CD version
           command:
             - sh
             - -c
