@@ -14,13 +14,17 @@ spec:
       selfHeal: true
   sources:
     # Source 1: values repo
-    - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
-      targetRevision: main
-      ref: values
+   # PreSync Hook
+  - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
+    targetRevision: main
+    path: deploy/dev/pre-sync/presync.yaml
+  - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
+    targetRevision: main
+    ref: values
     # Source 2: Helm chart in Git repo
-    - repoURL: https://devops4solutions.github.io/springboot-helm-chart/
-      chart: springboot
-      targetRevision: 0.1.5
-      helm:
+  - repoURL: https://devops4solutions.github.io/springboot-helm-chart/
+    chart: springboot
+    targetRevision: 0.1.5
+    helm:
         valueFiles:
           - $values/deploy/dev/values.yaml

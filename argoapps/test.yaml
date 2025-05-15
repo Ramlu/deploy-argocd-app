@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: springboot-multisource-test
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+  sources:
+    # Source 1: values repo
+    - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
+      targetRevision: main
+      ref: values
+    # Source 2: Helm chart in Git repo
+    - repoURL: https://devops4solutions.github.io/springboot-helm-chart/
+      chart: springboot
+      targetRevision: 0.1.5
+      helm:
+        valueFiles:
+          - $values/deploy/test/values.yaml
