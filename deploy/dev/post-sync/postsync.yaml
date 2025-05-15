@@ -1,14 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: trigger-test-sync
+  name: Sync-test-environment
   annotations:
     argocd.argoproj.io/hook: PostSync
 spec:
   template:
     spec:
       containers:
-        - name: trigger-test
+        - name: sync-test-environment
           image: quay.io/argoproj/argocd # Use the appropriate Argo CD version
           command:
             - sh
