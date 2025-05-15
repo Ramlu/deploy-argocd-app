@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: Sync-test-environment
+  name: sync-test-environment
   annotations:
     argocd.argoproj.io/hook: PostSync
 spec:
