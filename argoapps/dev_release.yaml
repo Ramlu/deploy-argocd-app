@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: springboot-multisource-release
+  name: springboot-dev
   namespace: argocd
 spec:
   project: default
@@ -13,11 +13,6 @@ spec:
       prune: true
       selfHeal: true
   sources:
-    # Source 1: values repo
-   # PreSync Hook
-  - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
-    targetRevision: main
-    path: deploy/dev/pre-sync
   - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
     targetRevision: main
     ref: values
@@ -28,3 +23,7 @@ spec:
     helm:
         valueFiles:
           - $values/deploy/dev/values.yaml
+    # PostSync Hook
+  - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
+    targetRevision: main
+    path: deploy/dev/post-sync

@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sync-prod-environment
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+spec:
+  template:
+    spec:
+      containers:
+        - name: sync-prod-environment
+          image: quay.io/argoproj/argocd # Use the appropriate Argo CD version
+          command:
+            - sh
+            - -c
+            - |
+              echo "Authenticating with Argo CD"
+              argocd login argocd-server.argocd.svc.cluster.local --insecure --username admin --password "7XdJgf-7vM2JeJzJ"
+              echo "Syncing prod application..."
+              argocd app sync springboot-prod
+      restartPolicy: Never
