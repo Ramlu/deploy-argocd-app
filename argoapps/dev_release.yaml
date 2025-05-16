@@ -14,7 +14,7 @@ spec:
       selfHeal: true
   sources:
   - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
-    targetRevision: test
+    targetRevision: main
     ref: values
     # Source 2: Helm chart in Git repo
   - repoURL: https://devops4solutions.github.io/springboot-helm-chart/
@@ -25,5 +25,5 @@ spec:
           - $values/deploy/dev/values.yaml
     # PostSync Hook
   - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
-    targetRevision: test
+    targetRevision: main
     path: deploy/dev/post-sync

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: springboot-test
+  name: springboot-prod
   namespace: argocd
 spec:
   project: default
@@ -21,8 +21,5 @@ spec:
       targetRevision: 0.1.5
       helm:
         valueFiles:
-          - $values/deploy/test/values.yaml
-      # PostSync Hook
-    - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
-      targetRevision: main
-      path: deploy/test/post-sync
+          - $values/deploy/prod/values.yaml
+  
