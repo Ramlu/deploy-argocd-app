@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: dev-project
+  namespace: argocd
+spec:
+  description: "Development environment"
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: 'dev*'
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*' 
+  roles:
+   - name: admin-1
+     policies:
+     - p, proj:dev-project:admin-1, applications, *, dev*, allow
+     groups:
+      - nidhi
+   

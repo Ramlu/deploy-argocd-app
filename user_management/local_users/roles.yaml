@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-rbac-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-rbac-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  policy.csv: |
+    g, devops, role:admin
+    p, developer, applications, sync, dev-project/*, allow
+  policy.default: role:readonly # Any user who logs in without an explicitly defined policy in policy.csv will be assigned the readonly role.

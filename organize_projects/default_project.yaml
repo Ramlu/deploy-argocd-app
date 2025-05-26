@@ -4,7 +4,7 @@ metadata:
   name: springboot-multisource1
   namespace: argocd
 spec:
-  project: dev
+  project: default
   destination:
     server: https://kubernetes.default.svc
     namespace: default

@@ -1,19 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: springboot-multisource1
+  name: springboot-dev
   namespace: argocd
 spec:
-  project: dev
+  project: dev-project
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: dev-1
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
   sources:
-    # Source 1: values repo
   - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
     targetRevision: main
     ref: values
@@ -24,3 +25,7 @@ spec:
     helm:
         valueFiles:
           - $values/deploy/dev/values.yaml
+    # PostSync Hook
+ # - repoURL: https://github.com/devops4solutions/deploy-argocd-app.git
+  #  targetRevision: main
+   # path: deploy/dev/post-sync
